@@ -16,6 +16,9 @@ pipeline {
            
             steps {
                 script {
+                    sh 'usermod -aG docker jenkins'
+                    sh 'usermod -aG root jenkins'
+                    sh 'chmod 664 /var/run/docker.sock'
                     app = docker.build(DOCKER_IMAGE_NAME)
                     app.inside {
                         sh 'echo Hello, World!'
