@@ -16,9 +16,6 @@ pipeline {
            
             steps {
                 script {
-                    sh 'sudo groupadd docker'
-                    sh 'sudo usermod -aG docker $USER'
-                    sh 'sudo chmod 664 /var/run/docker.sock'
                     app = docker.build(DOCKER_IMAGE_NAME)
                     app.inside {
                         sh 'echo Hello, World!'
